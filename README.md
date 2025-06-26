@@ -58,7 +58,7 @@ This project implements a complete Job Interview Management System API that mana
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/[username]/FastAPI-Interview-Side-Project.git
+git clone https://github.com/palmgarmer/FastAPI-Interview-Side-Project.git
 cd FastAPI-Interview-Side-Project
 ```
 
