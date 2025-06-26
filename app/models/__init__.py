@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, DateTime, Text
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 
@@ -14,7 +14,7 @@ def create_id_pk():
     return mapped_column(Integer, primary_key=True, index=True)
 
 def create_created_at():
-    return mapped_column(DateTime, default=datetime.utcnow)
+    return mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 def create_updated_at():
-    return mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    return mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 # Schema for POST /interviews/{id}/feedback
 class FeedbackCreate(BaseModel):
@@ -7,10 +7,9 @@ class FeedbackCreate(BaseModel):
 
 # Schema for GET /interviews/{id}/feedback  
 class FeedbackResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: int
     interview_id: int
     rating: int
-    comment: str
-    
-    class Config:
-        from_attributes = True  
+    comment: str  

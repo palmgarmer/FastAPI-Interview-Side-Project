@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List
 from datetime import datetime
 import uuid
@@ -13,23 +13,21 @@ class InterviewCreate(BaseModel):
 
 # Schema for GET /candidates/{id}/interviews (without feedback)
 class InterviewResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: int
     candidate_id: uuid.UUID
     interviewer: str
     scheduled_at: datetime
     result: Optional[str] = None
-    
-    class Config:
-        from_attributes = True
 
 # Schema for GET /candidates (includes feedback)
 class InterviewWithFeedback(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: int
     candidate_id: uuid.UUID
     interviewer: str
     scheduled_at: datetime
     result: Optional[str] = None
     feedback: List[FeedbackResponse] = []
-    
-    class Config:
-        from_attributes = True
